@@ -47,9 +47,3 @@ a.bjs-powered-by, hr.separator{
 .djs-minimap .toggle {
   display: none;
 }
-
-/* Color for class typeelt*/
-g[type="bpmn:Task"]:not(.djs-connection) rect {
-  stroke: green !important; /* color elements as green */
-  fill:  lightgreen !important;
-}

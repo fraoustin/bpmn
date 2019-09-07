@@ -1,0 +1,50 @@
+/* Color for class typeelt*/
+/* type
+bpmn:Activity
+bpmn:BoundaryEvent
+bpmn:BusinessRuleTask
+bpmn:CallActivity
+bpmn:CatchEvent
+bpmn:ConditionalEventDefinition
+bpmn:DataStoreReference
+bpmn:EndEvent
+bpmn:ErrorEventDefinition
+bpmn:EscalationEventDefinition
+bpmn:Event
+bpmn:EventBasedGateway
+bpmn:ExclusiveGateway
+bpmn:FormalExpression
+bpmn:Gateway
+bpmn:GlobalBusinessRuleTask
+bpmn:GlobalManualTask
+bpmn:GlobalScriptTask
+bpmn:GlobalTask
+bpmn:GlobalUserTask
+bpmn:ImplicitThrowEvent
+bpmn:InclusiveGateway
+bpmn:IntermediateCatchEvent
+bpmn:IntermediateThrowEvent
+bpmn:ManualTask
+bpmn:MessageEventDefinition
+bpmn:MultiInstanceLoopCharacteristics
+bpmn:ParallelGateway
+bpmn:Process
+bpmn:ReceiveTask
+bpmn:ResourceAssignmentExpression
+bpmn:ScriptTask
+bpmn:SendTask
+bpmn:SequenceFlow
+bpmn:ServiceTask
+bpmn:SignalEventDefinition
+bpmn:StartEvent
+bpmn:SubProcess
+bpmn:Task
+bpmn:ThrowEvent
+bpmn:TimerEventDefinition
+bpmn:Transaction
+bpmn:UserTask
+*/
+g[type="bpmn:Task"]:not(.djs-connection) rect {
+  stroke: green !important; /* color elements as green */
+  fill:  lightgreen !important;
+}
