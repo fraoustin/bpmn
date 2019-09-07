@@ -1,0 +1,55 @@
+html, body, #js-canvas {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+a.bjs-powered-by, hr.separator{
+  display:none;
+}
+.djs-popup, .djs-palette {
+  background: unset; 
+  border: none;
+}
+.djs-palette {
+  left: unset;
+  top: 0px;
+  right: 0px;
+  height: 100%;
+}
+.file{
+  display: inline;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+}
+.toolbox > a {
+  float: left;
+  width: 46px;
+  height: 46px;
+  text-align: center;
+  font-size: 30px;
+  display: none;
+}
+.toolbox > a.active {
+  display:block;
+}
+.zoom{
+  display: inline;
+  position: fixed;
+  right: 0px;
+  bottom: 0px;
+}
+.djs-minimap {
+  right: 46px;
+  top: 0px;
+  border: none;
+}
+.djs-minimap .toggle {
+  display: none;
+}
+
+/* Color for class typeelt*/
+g[type="bpmn:Task"]:not(.djs-connection) rect {
+  stroke: green !important; /* color elements as green */
+  fill:  lightgreen !important;
+}
