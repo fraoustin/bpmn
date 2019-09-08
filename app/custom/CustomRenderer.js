@@ -15,7 +15,7 @@ export default class CustomRenderer extends BaseRenderer {
   }
 
   canRender(element) {
-    return isAny(element, [ 'bpmn:Task',  'bpmn:Event', 'bpmn:DataStoreReference']) && !element.labelTarget;
+    return isAny(element, [ 'bpmn:Task',  'bpmn:Event', 'bpmn:DataStoreReference', 'bpmn:TextAnnotation']) && !element.labelTarget;
   }
 
   drawShape(parentNode, element) {
