@@ -19,12 +19,12 @@ export default class CustomRenderer extends BaseRenderer {
   }
 
   drawShape(parentNode, element) {
-    var typ = element.type;
-    if (element.businessObject.eventDefinitions) {
-      typ = element.businessObject.eventDefinitions[0].$type;
-    };    
     const shape = this.bpmnRenderer.drawShape(parentNode, element);
-    svgAttr(parentNode, {"type": typ});
+    svgAttr(parentNode, {"type": element.type});
+    if (element.businessObject.eventDefinitions) {
+      svgAttr(parentNode, {"typedef" : element.businessObject.eventDefinitions[0].$type});
+    };    
+ 
   }
 
 }

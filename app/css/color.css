@@ -50,12 +50,28 @@ g[type="bpmn:TextAnnotation"]:not(.djs-connection) path {
 }
 g[type="bpmn:TextAnnotation"]:not(.djs-connection) text {
   font-style: italic !important;
-  color: lightgray !important;
   fill: lightgray !important; 
 }
 
 
-g[type="bpmn:Task"]:not(.djs-connection) rect {
-  stroke: green !important; /* color elements as green */
-  fill:  lightgreen !important;
+g[type="bpmn:UserTask"]:not(.djs-connection) rect,
+g[type="bpmn:ManualTask"]:not(.djs-connection) rect,
+g[type="bpmn:BusinessRuleTask"]:not(.djs-connection) rect
+{
+  stroke: lightgreen !important;
+}
+
+g[type="bpmn:ScriptTask"]:not(.djs-connection) rect,
+g[type="bpmn:ServiceTask"]:not(.djs-connection) rect
+{
+  stroke: lightblue !important;
+}
+
+g[typedef="bpmn:MessageEventDefinition"][type="bpmn:EndEvent"]:not(.djs-connection) circle
+{
+  stroke: orange !important;
+}
+g[typedef="bpmn:MessageEventDefinition"][type="bpmn:EndEvent"]:not(.djs-connection) path
+{
+  fill: orange !important;
 }
