@@ -24,7 +24,7 @@ Init env
     npm install --save-dev webpack-dev-server
     npm install --save-dev copy-webpack-plugin
     npm install --save-dev raw-loader
-    npm install --save   diagram-js-minimap
+    npm install --save diagram-js-minimap
     npm install --save tiny-svg
 
 add in package.json
@@ -58,6 +58,18 @@ You can generate build
 
     npm run build
 
+Docker
+------
+
+You can generate your container
+
+::
+
+    git clone https://github.com/fraoustin/bpmn.git
+    cd bpmn
+    docker build -t bpmn .
+    docker run --rm -p 80:80 -t bpmn
+
 Usage
 -----
 
@@ -68,6 +80,7 @@ Feature
 
 - color connect (comment, between start and end event)
 - create container
+- use container alpine
 - add webdav connection (open, save and connection)
 - export png
 - add other diagram
