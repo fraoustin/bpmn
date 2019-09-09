@@ -3,6 +3,12 @@ html, body, #js-canvas {
   padding: 0;
   margin: 0;
 }
+
+text {
+  font-family: 'Open Sans', sans-serif !important;
+  font-size: 14px !important;
+}
+
 a.bjs-powered-by, hr.separator{
   display:none;
 }
