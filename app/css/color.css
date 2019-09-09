@@ -58,20 +58,70 @@ g[type="bpmn:UserTask"]:not(.djs-connection) rect,
 g[type="bpmn:ManualTask"]:not(.djs-connection) rect,
 g[type="bpmn:BusinessRuleTask"]:not(.djs-connection) rect
 {
-  stroke: lightgreen !important;
+  stroke: rgb(67, 160, 71) !important;
 }
 
 g[type="bpmn:ScriptTask"]:not(.djs-connection) rect,
 g[type="bpmn:ServiceTask"]:not(.djs-connection) rect
 {
-  stroke: lightblue !important;
+  stroke: rgb(142, 36, 170) !important;
 }
 
-g[typedef="bpmn:MessageEventDefinition"][type="bpmn:EndEvent"]:not(.djs-connection) circle
+
+g[type="bpmn:EndEvent"]:not(.djs-connection) circle
 {
-  stroke: orange !important;
+  stroke: rgb(251, 140, 0) !important;
+  fill: rgb(255, 224, 178) !important;
 }
-g[typedef="bpmn:MessageEventDefinition"][type="bpmn:EndEvent"]:not(.djs-connection) path
+
+g[type="bpmn:EndEvent"]:not(.djs-connection) path
 {
-  fill: orange !important;
+  fill: rgb(251, 140, 0) !important;
+  stroke: rgb(255, 224, 178) !important;
 }
+
+g[type="bpmn:EndEvent"][typedef="bpmn:ErrorEventDefinition"]:not(.djs-connection) circle
+{
+  stroke: rgb(229, 57, 53) !important;
+  fill: rgb(255, 205, 210) !important;
+}
+
+g[type="bpmn:EndEvent"][typedef="bpmn:ErrorEventDefinition"]:not(.djs-connection) path
+{
+  fill: rgb(229, 57, 53) !important;
+  stroke: rgb(255, 205, 210) !important;
+}
+
+g[type="bpmn:StartEvent"]:not(.djs-connection) circle,
+g[type="bpmn:StartEvent"]:not(.djs-connection) path
+{
+  stroke: rgb(30, 136, 229) !important;
+  fill: rgb(187, 222, 251) !important;
+}
+
+g[type="bpmn:IntermediateCatchEvent"][typedef="bpmn:SignalEventDefinition"]:not(.djs-connection) circle:nth-of-type(2n),
+g[type="bpmn:IntermediateCatchEvent"][typedef="bpmn:MessageEventDefinition"]:not(.djs-connection) circle:nth-of-type(2n)
+{
+  fill: rgb(187, 222, 251) !important;
+}
+
+g[type="bpmn:IntermediateCatchEvent"][typedef="bpmn:SignalEventDefinition"]:not(.djs-connection) path,
+g[type="bpmn:IntermediateCatchEvent"][typedef="bpmn:MessageEventDefinition"]:not(.djs-connection) path
+{
+  stroke: rgb(30, 136, 229) !important;
+  fill: rgb(187, 222, 251) !important;
+}
+
+g[type="bpmn:IntermediateThrowEvent"][typedef="bpmn:SignalEventDefinition"]:not(.djs-connection) circle:nth-of-type(2n),
+g[type="bpmn:IntermediateThrowEvent"][typedef="bpmn:MessageEventDefinition"]:not(.djs-connection) circle:nth-of-type(2n)
+{
+  fill: rgb(255, 224, 178) !important;
+}
+
+g[type="bpmn:IntermediateThrowEvent"][typedef="bpmn:SignalEventDefinition"]:not(.djs-connection) path,
+g[type="bpmn:IntermediateThrowEvent"][typedef="bpmn:MessageEventDefinition"]:not(.djs-connection) path
+{
+  stroke: rgb(255, 224, 178) !important;
+  fill: rgb(255, 140, 0) !important;
+}
+
