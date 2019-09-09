@@ -1,19 +1,10 @@
-FROM alpine:3.4 as builder
+FROM node:12 as builder
 LABEL maintainer="Frederic Aoustin <fraoustin@gmail.com>"
-RUN apk add --no-cache --virtual .nodejs nodejs
-
-RUN mkdir /code
-WORKDIR /code
-
-# Setup PATH to prioritize local npm bin ahead of system PATH.
-ENV PATH node_modules/.bin:$PATH
-COPY app /code/
-COPY resources /code/
-COPY package.json /code/
-COPY webpack.config.js /code/
-
+WORKDIR /usr/src/app
+COPY package*.json ./
 RUN npm install
+COPY . .
 RUN npm run build
 
 FROM nginx:1.17
-COPY --from=builder /code/* /usr/share/nginx/html
+COPY --from=builder /usr/src/app/dist /usr/share/nginx/html
