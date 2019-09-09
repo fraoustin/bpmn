@@ -56,17 +56,43 @@ g[type="bpmn:TextAnnotation"]:not(.djs-connection) text {
 
 g[type="bpmn:UserTask"]:not(.djs-connection) rect,
 g[type="bpmn:ManualTask"]:not(.djs-connection) rect,
-g[type="bpmn:BusinessRuleTask"]:not(.djs-connection) rect
+g[type="bpmn:BusinessRuleTask"]:not(.djs-connection) rect,
+g[type="bpmn:UserTask"]:not(.djs-connection) path,
+g[type="bpmn:ManualTask"]:not(.djs-connection) path,
+g[type="bpmn:BusinessRuleTask"]:not(.djs-connection) path
 {
   stroke: rgb(67, 160, 71) !important;
 }
 
+g[type="bpmn:UserTask"]:not(.djs-connection) path:last-child
+{
+  fill: rgb(67, 160, 71) !important;
+}
+
+
 g[type="bpmn:ScriptTask"]:not(.djs-connection) rect,
-g[type="bpmn:ServiceTask"]:not(.djs-connection) rect
+g[type="bpmn:ServiceTask"]:not(.djs-connection) rect,
+g[type="bpmn:ScriptTask"]:not(.djs-connection) path,
+g[type="bpmn:ServiceTask"]:not(.djs-connection) path
 {
   stroke: rgb(142, 36, 170) !important;
 }
 
+g[type="bpmn:SendTask"]:not(.djs-connection) rect
+{
+  stroke: rgb(251, 140, 0) !important;
+}
+
+g[type="bpmn:SendTask"]:not(.djs-connection) path
+{
+  fill: rgb(251, 140, 0) !important;
+}
+
+g[type="bpmn:ReceiveTask"]:not(.djs-connection) rect,
+g[type="bpmn:ReceiveTask"]:not(.djs-connection) path
+{
+  stroke: rgb(30, 136, 229) !important;
+}
 
 g[type="bpmn:EndEvent"]:not(.djs-connection) circle
 {
