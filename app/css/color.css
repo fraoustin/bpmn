@@ -151,3 +151,8 @@ g[type="bpmn:IntermediateThrowEvent"][typedef="bpmn:MessageEventDefinition"]:not
   fill: rgb(255, 140, 0) !important;
 }
 
+/* Association */
+g[type="bpmn:Association"][typetarget="bpmn:TextAnnotation"]:not(.djs-connection) polyline 
+{
+  stroke: lightgray !important;
+}
