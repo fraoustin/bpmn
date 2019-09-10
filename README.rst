@@ -8,6 +8,12 @@ Use
 - bpmn-js from https://github.com/bpmn-io/bpmn-js
 - icon from https://feathericons.com/ 
 
+You can run with docker
+
+::
+
+    docker run -p 80:80 --rm --name bpmn -t fraoustin/bpmn 
+
 Init env
 --------
 
@@ -79,8 +85,6 @@ Feature
 -------
 
 - color connect (comment, between start and end event)
-- create container
-- use container alpine
 - add webdav connection (open, save and connection)
 - export png
 - add other diagram
