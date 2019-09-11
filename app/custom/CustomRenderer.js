@@ -28,7 +28,6 @@ export default class CustomRenderer extends BaseRenderer {
   }
 
   drawConnection(parentNode, element){
-    console.log(element)
     const connection = this.bpmnRenderer.drawConnection(parentNode, element);
     svgAttr(parentNode, {"type": element.type});
     if (element.businessObject.eventDefinitions) {

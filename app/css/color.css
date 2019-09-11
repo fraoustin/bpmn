@@ -152,7 +152,14 @@ g[type="bpmn:IntermediateThrowEvent"][typedef="bpmn:MessageEventDefinition"]:not
 }
 
 /* Association */
-g[type="bpmn:Association"][typetarget="bpmn:TextAnnotation"]:not(.djs-connection) polyline 
+g[type="bpmn:Association"][typetarget="bpmn:TextAnnotation"]:not(.djs-connection) polyline,
+g[type="bpmn:Association"][typetarget="bpmn:TextAnnotation"]:not(.djs-connection) path
 {
   stroke: lightgray !important;
+}
+
+g[type="bpmn:SequenceFlow"][typesrc="bpmn:IntermediateThrowEvent"][typetarget="bpmn:IntermediateCatchEvent"]:not(.djs-connection) polyline,
+g[type="bpmn:SequenceFlow"][typesrc="bpmn:IntermediateThrowEvent"][typetarget="bpmn:IntermediateCatchEvent"]:not(.djs-connection) path
+{
+  stroke-dasharray: 5, 5 !important;
 }
