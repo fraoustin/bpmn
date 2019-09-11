@@ -88,3 +88,4 @@ Feature
 - add webdav connection (open, save and connection)
 - export png
 - add other diagram
+- import diagram
