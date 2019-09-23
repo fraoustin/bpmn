@@ -16,6 +16,7 @@ var modeler = new BpmnModeler({
 });
 
 function createNewDiagram() {
+  $('#nameFile').text("diagram");
   openDiagram(diagramXML);
 }
 
@@ -94,13 +95,16 @@ function debounce(fn, timeout) {
   };
 }
 
-var exportArtifacts = debounce(function() {
+function getNameFile(ext) {
+  return $("#nameFile").text()+'.'+ext;
+}
 
+var exportArtifacts = debounce(function() {
   saveSVG(function(err, svg) {
-    setEncoded($('#svg'), 'diagram.svg', err ? null : svg);
+    setEncoded($('#svg'), getNameFile('svg'), err ? null : svg);
   });
   saveDiagram(function(err, svg) {
-    setEncoded($('#export'), 'diagram.bpmn', err ? null : svg);
+    setEncoded($('#export'), getNameFile('bpmn'), err ? null : svg);
   });
 
 
@@ -125,6 +129,7 @@ $("#fileUpload").change(function () {
   reader.onload = function (evt) {
       openDiagram(evt.target.result);
   };
+  $("#nameFile").text(document.getElementById('fileUpload').files[0].name.split('.')[0])
   reader.readAsText(document.getElementById('fileUpload').files[0])
 })
 

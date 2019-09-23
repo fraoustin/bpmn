@@ -9,7 +9,7 @@ text {
   font-size: 14px !important;
 }
 
-a.bjs-powered-by, hr.separator, #fileUpload{
+a.bjs-powered-by, hr.separator, #fileUpload, #fileName{
   display:none;
 }
 .djs-popup, .djs-palette {
