@@ -115,3 +115,17 @@ $('#subzoom').click(subZoom);
 $('#minimap').click(getMinimap);
 
 $(".djs-palette").removeClass('open');
+
+function openFile() {
+  $("#fileUpload").click();
+};
+
+$("#fileUpload").change(function () {
+  var reader = new FileReader();
+  reader.onload = function (evt) {
+      openDiagram(evt.target.result);
+  };
+  reader.readAsText(document.getElementById('fileUpload').files[0])
+})
+
+$("#open").click(openFile)
