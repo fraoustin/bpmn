@@ -84,8 +84,5 @@ TODO
 Feature
 -------
 
-- color connect (comment, between start and end event)
 - add webdav connection (open, save and connection)
 - export png
-- add other diagram
-- import diagram
