@@ -72,6 +72,50 @@ function subZoom() {
   modeler.get('canvas').zoom(modeler.get('canvas').zoom() * 0.85);
 } 
 
+function savePNG() {
+  modeler.saveSVG(_savePNG);
+}
+
+function _savePNG(err, svg) {
+  var link = $('#png');
+  var name = getNameFile('png');
+  let clone = new DOMParser().parseFromString(svg, 'text/html');
+  let div = clone.body.firstChild;
+  div.removeAttribute('width');
+  div.removeAttribute('height');
+  var data = (new XMLSerializer()).serializeToString(div);
+  if (data) {
+    $(".djs-palette").addClass('open');
+    var img = new Image();
+    var svgBlob = new Blob([data], {type: 'image/svg+xml;charset=utf-8'});
+    var DOMURL = window.URL || window.webkitURL || window;
+    var url = DOMURL.createObjectURL(svgBlob);
+    var canvas = document.getElementsByTagName('canvas')[0];
+    var ctx = canvas.getContext('2d');
+    var svgwin = document.getElementsByTagName('svg')[0];
+    var rect = svgwin.getBoundingClientRect();
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+    canvas.style.width  = rect.width+'px';
+    canvas.style.height = rect.height+'px';
+
+    img.onload = function () {
+        ctx.drawImage(img, 0, 0);
+        var imgURI = canvas
+            .toDataURL('image/png')
+            .replace('image/png', 'image/octet-stream');
+        link.addClass('active').attr({
+          'href': imgURI,
+          'download': name
+        });
+    };
+    img.src = url;
+  } else {
+    $(".djs-palette").removeClass('open');
+    link.removeClass('active');
+  }
+}
+
 function saveSVG(done) {
   modeler.saveSVG(done);
 }
@@ -106,7 +150,8 @@ var exportArtifacts = debounce(function() {
   saveDiagram(function(err, svg) {
     setEncoded($('#export'), getNameFile('bpmn'), err ? null : svg);
   });
-
+  savePNG();
+ 
 
 }, 500);
 
