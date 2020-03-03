@@ -53,3 +53,6 @@ a.bjs-powered-by, hr.separator, #fileUpload, #nameFile{
 .djs-minimap .toggle {
   display: none;
 }
+canvas {
+  display: none;
+}

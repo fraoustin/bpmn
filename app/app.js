@@ -3,7 +3,10 @@ import $ from 'jquery';
 import BpmnModeler from 'bpmn-js/lib/Modeler';
 import minimapModule from 'diagram-js-minimap';
 
+
 import customRendererModule from './custom';
+
+import customControlsColorModule from './customcolors';
 
 import diagramXML from '../resources/newDiagram.bpmn';
 
@@ -11,7 +14,8 @@ var modeler = new BpmnModeler({
   container: '#js-canvas',
   additionalModules: [
     minimapModule,
-    customRendererModule
+    customRendererModule,
+    customControlsColorModule
   ]
 });
 

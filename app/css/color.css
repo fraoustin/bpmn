@@ -45,117 +45,72 @@ bpmn:TimerEventDefinition
 bpmn:Transaction
 bpmn:UserTask
 */
-g[type="bpmn:TextAnnotation"]:not(.djs-connection) path {
-  stroke: lightgray !important; 
-}
-g[type="bpmn:TextAnnotation"]:not(.djs-connection) text {
-  font-style: italic !important;
-  fill: lightgray !important; 
+
+.bpmn-icon-color-black:before {
+    content: '\e838';
+    color: unset;
 }
 
-
-g[type="bpmn:UserTask"]:not(.djs-connection) rect,
-g[type="bpmn:ManualTask"]:not(.djs-connection) rect,
-g[type="bpmn:BusinessRuleTask"]:not(.djs-connection) rect,
-g[type="bpmn:UserTask"]:not(.djs-connection) path,
-g[type="bpmn:ManualTask"]:not(.djs-connection) path,
-g[type="bpmn:BusinessRuleTask"]:not(.djs-connection) path
-{
-  stroke: rgb(67, 160, 71) !important;
+.bpmn-icon-color-orange:before {
+    content: '\e838';
+    color: rgb(251, 140, 0);
 }
 
-g[type="bpmn:UserTask"]:not(.djs-connection) path:last-child
-{
-  fill: rgb(67, 160, 71) !important;
+.bpmn-icon-color-blue:before {
+    content: '\e838';
+    color: rgb(30, 136, 229);
+}
+
+.bpmn-icon-color-red:before {
+    content: '\e838';
+    color: rgb(229, 57, 53);
+}
+
+.bpmn-icon-color-purple:before {
+    content: '\e838';
+    color: rgb(142, 36, 170);
+}
+
+.bpmn-icon-color-green:before {
+    content: '\e838';
+    color: rgb(67, 160, 71);
+}
+
+.bpmn-icon-color-grey:before {
+    content: '\e838';
+    color: gray;
 }
 
 
-g[type="bpmn:ScriptTask"]:not(.djs-connection) rect,
-g[type="bpmn:ServiceTask"]:not(.djs-connection) rect,
-g[type="bpmn:ScriptTask"]:not(.djs-connection) path,
-g[type="bpmn:ServiceTask"]:not(.djs-connection) path
-{
-  stroke: rgb(142, 36, 170) !important;
+
+.bpmn-icon-color-orange-fill:before {
+    content: '\e836';
+    color: rgb(251, 140, 0);
 }
 
-g[type="bpmn:SendTask"]:not(.djs-connection) rect
-{
-  stroke: rgb(251, 140, 0) !important;
+.bpmn-icon-color-blue-fill:before {
+    content: '\e836';
+    color: rgb(30, 136, 229);
 }
 
-g[type="bpmn:SendTask"]:not(.djs-connection) path
-{
-  fill: rgb(251, 140, 0) !important;
+.bpmn-icon-color-red-fill:before {
+    content: '\e836';
+    color: rgb(229, 57, 53);
 }
 
-g[type="bpmn:ReceiveTask"]:not(.djs-connection) rect,
-g[type="bpmn:ReceiveTask"]:not(.djs-connection) path
-{
-  stroke: rgb(30, 136, 229) !important;
+.bpmn-icon-color-purple-fill:before {
+    content: '\e836';
+    color: rgb(142, 36, 170);
 }
 
-g[type="bpmn:EndEvent"]:not(.djs-connection) circle
-{
-  stroke: rgb(251, 140, 0) !important;
-  fill: rgb(255, 224, 178) !important;
+.bpmn-icon-color-green-fill:before {
+    content: '\e836';
+    color: rgb(67, 160, 71);
 }
 
-g[type="bpmn:EndEvent"]:not(.djs-connection) path
-{
-  fill: rgb(251, 140, 0) !important;
-  stroke: rgb(255, 224, 178) !important;
-}
-
-g[type="bpmn:EndEvent"][typedef="bpmn:ErrorEventDefinition"]:not(.djs-connection) circle
-{
-  stroke: rgb(229, 57, 53) !important;
-  fill: rgb(255, 205, 210) !important;
-}
-
-g[type="bpmn:EndEvent"][typedef="bpmn:ErrorEventDefinition"]:not(.djs-connection) path
-{
-  fill: rgb(229, 57, 53) !important;
-  stroke: rgb(255, 205, 210) !important;
-}
-
-g[type="bpmn:StartEvent"]:not(.djs-connection) circle,
-g[type="bpmn:StartEvent"]:not(.djs-connection) path
-{
-  stroke: rgb(30, 136, 229) !important;
-  fill: rgb(187, 222, 251) !important;
-}
-
-g[type="bpmn:IntermediateCatchEvent"][typedef="bpmn:SignalEventDefinition"]:not(.djs-connection) circle:nth-of-type(2n),
-g[type="bpmn:IntermediateCatchEvent"][typedef="bpmn:MessageEventDefinition"]:not(.djs-connection) circle:nth-of-type(2n)
-{
-  fill: rgb(187, 222, 251) !important;
-}
-
-g[type="bpmn:IntermediateCatchEvent"][typedef="bpmn:SignalEventDefinition"]:not(.djs-connection) path,
-g[type="bpmn:IntermediateCatchEvent"][typedef="bpmn:MessageEventDefinition"]:not(.djs-connection) path
-{
-  stroke: rgb(30, 136, 229) !important;
-  fill: rgb(187, 222, 251) !important;
-}
-
-g[type="bpmn:IntermediateThrowEvent"][typedef="bpmn:SignalEventDefinition"]:not(.djs-connection) circle:nth-of-type(2n),
-g[type="bpmn:IntermediateThrowEvent"][typedef="bpmn:MessageEventDefinition"]:not(.djs-connection) circle:nth-of-type(2n)
-{
-  fill: rgb(255, 224, 178) !important;
-}
-
-g[type="bpmn:IntermediateThrowEvent"][typedef="bpmn:SignalEventDefinition"]:not(.djs-connection) path,
-g[type="bpmn:IntermediateThrowEvent"][typedef="bpmn:MessageEventDefinition"]:not(.djs-connection) path
-{
-  stroke: rgb(255, 224, 178) !important;
-  fill: rgb(255, 140, 0) !important;
-}
-
-/* Association */
-g[type="bpmn:Association"][typetarget="bpmn:TextAnnotation"]:not(.djs-connection) polyline,
-g[type="bpmn:Association"][typetarget="bpmn:TextAnnotation"]:not(.djs-connection) path
-{
-  stroke: lightgray !important;
+.bpmn-icon-color-grey-fill:before {
+    content: '\e836';
+    color: lightgray;
 }
 
 g[type="bpmn:SequenceFlow"][typesrc="bpmn:IntermediateThrowEvent"][typetarget="bpmn:IntermediateCatchEvent"]:not(.djs-connection) polyline,
