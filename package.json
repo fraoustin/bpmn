@@ -14,6 +14,8 @@
   "license": "ISC",
   "dependencies": {
     "bpmn-js": "^5.0.4",
+    "bpmn-js-properties-panel": "^0.33.1",
+    "camunda-bpmn-moddle": "^4.4.0",
     "diagram-js": "^5.0.2",
     "diagram-js-minimap": "^2.0.1",
     "jquery": "^3.4.1",
