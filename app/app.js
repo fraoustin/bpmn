@@ -196,6 +196,49 @@ function _savePNG(err, svg) {
     link.removeClass('active');
   }
 }
+function savePNGDav() {
+  modeler.saveSVG(_savePNGDav);
+}
+
+function _savePNGDav(err, svg) {
+  var link = $('#pngdav');
+  var name = getNameFile('png');
+  let clone = new DOMParser().parseFromString(svg, 'text/html');
+  let div = clone.body.firstChild;
+  div.removeAttribute('width');
+  div.removeAttribute('height');
+  var data = (new XMLSerializer()).serializeToString(div);
+  if (data) {
+    $(".djs-palette").addClass('open');
+    var img = new Image();
+    var svgBlob = new Blob([data], {type: 'image/svg+xml;charset=utf-8'});
+    var DOMURL = window.URL || window.webkitURL || window;
+    var url = DOMURL.createObjectURL(svgBlob);
+    var canvas = document.getElementsByTagName('canvas')[0];
+    var ctx = canvas.getContext('2d');
+    var svgwin = document.getElementsByTagName('svg')[0];
+    var rect = svgwin.getBoundingClientRect();
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+    canvas.style.width  = rect.width+'px';
+    canvas.style.height = rect.height+'px';
+
+    img.onload = function () {
+        ctx.drawImage(img, 0, 0);
+        var imgURI = canvas
+            .toDataURL('image/png')
+            .replace('image/png', 'image/octet-stream');
+        link.addClass('active').attr({
+          'href': imgURI,
+          'download': name
+        });
+    };
+    img.src = url;
+  } else {
+    $(".djs-palette").removeClass('open');
+    link.removeClass('active');
+  }
+}
 
 function saveSVG(done) {
   modeler.saveSVG(done);
@@ -232,6 +275,11 @@ var exportArtifacts = debounce(function() {
     setEncoded($('#export'), getNameFile('bpmn'), err ? null : svg);
   });
   savePNG();
+
+  saveDiagram(function(err, svg) {
+    setEncodedDav($('#exportdav'), getNameFile('bpmn'), err ? null : svg);
+  });
+  savePNGDav();
 }, 500);
 
 modeler.on('commandStack.changed', exportArtifacts);
@@ -262,7 +310,6 @@ $("#open").click(openFile)
 
 /* manage height of documentation */
 
-
 var hdoc = $(window).height() - 250;
 var mdoc = $(window).height() - 100;
 createCSSSelector('#camunda-documentation', 'height: ' + hdoc + 'px');
@@ -277,4 +324,76 @@ function changeProperties(event)
     $("[data-group='documentation']").removeClass("bpp-hidden");
     $("#camunda-name[name='text']").removeClass("spectext");
   }
+}
+
+/* integration BPMPlatform */
+
+function encodeData(data) {
+  return Object.keys(data).map(function(key) {
+      return [key, data[key]].map(encodeURIComponent).join("=");
+  }).join("&");
+}
+
+function findGetParameter(parameterName) {
+    var result = null,
+        tmp = [];
+    var items = location.search.substr(1).split("&");
+    for (var index = 0; index < items.length; index++) {
+        tmp = items[index].split("=");
+        if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+    }
+    return result;
+}
+
+function readFileFromDav(fs, path){
+  console.time("readFile " + path)
+  try {
+    var txt=fs.file(path).read();
+    if (txt.indexOf("<head><title>404 Not Found</title></head>") == -1) {
+      console.timeEnd("readFile " + path);
+      openDiagram(txt)
+    } else {
+      console.timeEnd("readFile " + path);
+      createNewDiagram();
+    }
+  } catch (error) {
+      console.timeEnd("readFile " + path);
+      createNewDiagram();
+  }
+}
+
+function writeFile(fs, path, txt){
+  fs.file(path).write(txt)
+}
+
+function writeFileDav(){
+  var url = window.location.protocol + '//' + window.location.host + '/';
+  var fs = new WebDAV.Fs(url);
+  var path = 'auth/' + findGetParameter("edit");
+  writeFile(fs, path, $("#exportdav").attr('data'));
+}
+
+function setEncodedDav(link, name, data) {
+  link.addClass('active');
+  var encodedData = encodeURIComponent(data);
+  
+  if (data) {
+    $(".djs-palette").addClass('open');
+    link.addClass('active').attr({
+      'data': 'data:application/bpmn20-xml;charset=UTF-8,' + encodedData
+    });
+  } else {
+    $(".djs-palette").removeClass('open');
+    link.removeClass('active');
+  }
+}
+
+if (findGetParameter("edit")) {
+  $("#toolbox-standalone").addClass("bpp-hidden");
+  var url = window.location.protocol + '//' + window.location.host + '/';
+  var fs = new WebDAV.Fs(url);
+  var path = 'auth/' + findGetParameter("edit");
+  readFileFromDav(fs, path)
+} else {
+  $("#toolbox-bpmp").addClass("bpp-hidden");
 }

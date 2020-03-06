@@ -20,7 +20,7 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: 'assets/**', to: 'vendor/bpmn-js', context: 'node_modules/bpmn-js/dist/' },
       { from: 'assets/**', to: 'vendor/diagram-js-minimap', context: 'node_modules/diagram-js-minimap/' },
-      { from: '**/*.{html,css,svg}', context: 'app/' }
+      { from: '**/*.{html,css,svg,js}', context: 'app/' }
     ])
   ],
   mode: 'development',

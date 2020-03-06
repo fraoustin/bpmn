@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>bpmn-js modeler demo</title>
+  <title>BPMPlatform</title>
 
   <link rel="stylesheet" href="vendor/bpmn-js/assets/diagram-js.css" />
   <link rel="stylesheet" href="vendor/bpmn-js/assets/bpmn-font/css/bpmn-embedded.css" />
@@ -9,16 +9,20 @@
   <link rel="stylesheet" href="css/app.css" />
   <link rel="stylesheet" href="css/color.css" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  <script src="js/webdav.js"></script>
 </head>
 <body>
   <div id="js-canvas"></div>
-  <div class="toolbox file">
+  <div id="toolbox-standalone" class="toolbox file">
     <a id="new" class="active"><img src="svg/file.svg" alt="edit"></a>
     <a id="open" class="active"><img src="svg/folder.svg" alt="edit"></a>
     <a id="export"><img src="svg/save.svg" alt="save"></a>
     <a id="png" href><img src="svg/image.svg" alt="image"></a>
     <a id="svg" href><img src="svg/download.svg" alt="download"></a>
-    
+  </div>
+  <div id="toolbox-bpmp" class="toolbox file">
+    <a id="exportdav"><img src="svg/save.svg" alt="save" onclick="writeFileDav()"></a>
+    <a id="pngdav" href><img src="svg/image.svg" alt="image"></a>
   </div>
   <div class="toolbox zoom">
     <a id="addzoom"><img src="svg/zoom-in.svg" alt="zoom in"></a>
