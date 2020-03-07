@@ -23,6 +23,7 @@ You can run with docker
     npm install --save bpmn-js
     npm install --save diagram-js
     npm install --save jquery
+    npm install --save bpmn-js-properties-panel
     npm install --save-dev webpack
     npm install --save-dev webpack-cli
     npm install --save-dev webpack-dev-server

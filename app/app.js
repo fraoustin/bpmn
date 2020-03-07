@@ -369,7 +369,7 @@ function writeFile(fs, path, txt){
 function writeFileDav(){
   var url = window.location.protocol + '//' + window.location.host + '/';
   var fs = new WebDAV.Fs(url);
-  var path = 'auth/' + findGetParameter("edit");
+  var path = findGetParameter("edit");
   writeFile(fs, path, $("#exportdav").attr('data'));
 }
 
@@ -390,10 +390,32 @@ function setEncodedDav(link, name, data) {
 
 if (findGetParameter("edit")) {
   $("#toolbox-standalone").addClass("bpp-hidden");
+
+  var exportArtifacts = debounce(function() {
+    saveDiagram(function(err, svg) {
+      setEncodedDav($('#exportdav'), getNameFile('bpmn'), err ? null : svg);
+    });
+    savePNGDav();
+  }, 500);
+  $("#exportdav").click(writeFileDav);
+
   var url = window.location.protocol + '//' + window.location.host + '/';
   var fs = new WebDAV.Fs(url);
-  var path = 'auth/' + findGetParameter("edit");
+  var path = findGetParameter("edit");
   readFileFromDav(fs, path)
 } else {
   $("#toolbox-bpmp").addClass("bpp-hidden");
+
+  var exportArtifacts = debounce(function() {
+    saveSVG(function(err, svg) {
+      setEncoded($('#svg'), getNameFile('svg'), err ? null : svg);
+    });
+    saveDiagram(function(err, svg) {
+      setEncoded($('#export'), getNameFile('bpmn'), err ? null : svg);
+    });
+    savePNG();
+  }, 500);
+
 }
+
+modeler.on('commandStack.changed', exportArtifacts);
