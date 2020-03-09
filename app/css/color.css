@@ -1,0 +1,127 @@
+/* Color for class typeelt*/
+/* type
+bpmn:Activity
+bpmn:BoundaryEvent
+bpmn:BusinessRuleTask
+bpmn:CallActivity
+bpmn:CatchEvent
+bpmn:ConditionalEventDefinition
+bpmn:DataStoreReference
+bpmn:EndEvent
+bpmn:ErrorEventDefinition
+bpmn:EscalationEventDefinition
+bpmn:Event
+bpmn:EventBasedGateway
+bpmn:ExclusiveGateway
+bpmn:FormalExpression
+bpmn:Gateway
+bpmn:GlobalBusinessRuleTask
+bpmn:GlobalManualTask
+bpmn:GlobalScriptTask
+bpmn:GlobalTask
+bpmn:GlobalUserTask
+bpmn:ImplicitThrowEvent
+bpmn:InclusiveGateway
+bpmn:IntermediateCatchEvent
+bpmn:IntermediateThrowEvent
+bpmn:ManualTask
+bpmn:MessageEventDefinition
+bpmn:MultiInstanceLoopCharacteristics
+bpmn:ParallelGateway
+bpmn:Process
+bpmn:ReceiveTask
+bpmn:ResourceAssignmentExpression
+bpmn:ScriptTask
+bpmn:SendTask
+bpmn:SequenceFlow
+bpmn:ServiceTask
+bpmn:SignalEventDefinition
+bpmn:StartEvent
+bpmn:SubProcess
+bpmn:Task
+bpmn:TextAnnotation
+bpmn:ThrowEvent
+bpmn:TimerEventDefinition
+bpmn:Transaction
+bpmn:UserTask
+*/
+
+
+
+.no-change {
+    color: lightgray;
+    filter: invert(50%);
+}
+
+.bpmn-icon-color-black:before {
+    content: '\e838';
+    color: unset;
+}
+
+.bpmn-icon-color-orange:before {
+    content: '\e838';
+    color: rgb(251, 140, 0);
+}
+
+.bpmn-icon-color-blue:before {
+    content: '\e838';
+    color: rgb(30, 136, 229);
+}
+
+.bpmn-icon-color-red:before {
+    content: '\e838';
+    color: rgb(229, 57, 53);
+}
+
+.bpmn-icon-color-purple:before {
+    content: '\e838';
+    color: rgb(142, 36, 170);
+}
+
+.bpmn-icon-color-green:before {
+    content: '\e838';
+    color: rgb(67, 160, 71);
+}
+
+.bpmn-icon-color-grey:before {
+    content: '\e838';
+    color: gray;
+}
+
+
+
+.bpmn-icon-color-orange-fill:before {
+    content: '\e836';
+    color: rgb(251, 140, 0);
+}
+
+.bpmn-icon-color-blue-fill:before {
+    content: '\e836';
+    color: rgb(30, 136, 229);
+}
+
+.bpmn-icon-color-red-fill:before {
+    content: '\e836';
+    color: rgb(229, 57, 53);
+}
+
+.bpmn-icon-color-purple-fill:before {
+    content: '\e836';
+    color: rgb(142, 36, 170);
+}
+
+.bpmn-icon-color-green-fill:before {
+    content: '\e836';
+    color: rgb(67, 160, 71);
+}
+
+.bpmn-icon-color-grey-fill:before {
+    content: '\e836';
+    color: lightgray;
+}
+
+g[type="bpmn:SequenceFlow"][typesrc="bpmn:IntermediateThrowEvent"][typetarget="bpmn:IntermediateCatchEvent"]:not(.djs-connection) polyline,
+g[type="bpmn:SequenceFlow"][typesrc="bpmn:IntermediateThrowEvent"][typetarget="bpmn:IntermediateCatchEvent"]:not(.djs-connection) path
+{
+  stroke-dasharray: 5, 5 !important;
+}

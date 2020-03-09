@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BPMPlatform</title>
+
+  <link rel="stylesheet" href="vendor/bpmn-js/assets/diagram-js.css" />
+  <link rel="stylesheet" href="vendor/bpmn-js/assets/bpmn-font/css/bpmn-embedded.css" />
+  <link rel="stylesheet" href="vendor/diagram-js-minimap/assets/diagram-js-minimap.css" />
+  <link rel="stylesheet" href="css/app.css" />
+  <link rel="stylesheet" href="css/color.css" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  <script src="js/    .js"></script>
+</head>
+<body>
+  <div id="js-canvas"></div>
+  <div id="toolbox-standalone" class="toolbox file">
+    <a id="new" class="active"><img src="svg/file.svg" alt="edit"></a>
+    <a id="open" class="active"><img src="svg/folder.svg" alt="edit"></a>
+    <a id="export"><img src="svg/save.svg" alt="save"></a>
+    <a id="png" href><img src="svg/image.svg" alt="image"></a>
+    <a id="svg" href><img src="svg/download.svg" alt="download"></a>
+  </div>
+  <div id="toolbox-bpmp" class="toolbox file">
+    <a id="exportdav"><img src="svg/save.svg" alt="save"></a>
+    <a id="pngdav" href><img src="svg/image.svg" alt="image"></a>
+  </div>
+  <div class="toolbox zoom">
+    <a id="addzoom"><img src="svg/zoom-in.svg" alt="zoom in"></a>
+    <a id="subzoom"><img src="svg/zoom-out.svg" alt="zoom out"></a>
+    <a id="fitzoom"><img src="svg/maximize.svg" alt="screen"></a>
+    <a id="minimap"><img src="svg/map.svg" alt="map"></a>
+  </div>
+  <a id="closedav"><img src="svg/x-circle.svg" alt="close"></a>
+  <input type="file" id="fileUpload" accept=".bpmn"/>
+  <div id="nameFile"></div>
+  <canvas></canvas>
+  <div class="properties-panel-parent" id="js-properties-panel"></div>
+  <script src="app.js"></script>
+</html>

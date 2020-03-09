@@ -1,0 +1,31 @@
+{
+  "name": "mybpmn",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack-dev-server --content-base=public --open"
+  },
+  "author": {
+    "name": "Frédéric Aoustin",
+    "url": "https://github.com/fraoustin"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "bpmn-js": "^5.0.4",
+    "bpmn-js-properties-panel": "^0.33.1",
+    "camunda-bpmn-moddle": "^4.4.0",
+    "diagram-js": "^5.0.2",
+    "diagram-js-minimap": "^2.0.1",
+    "jquery": "^3.4.1",
+    "tiny-svg": "^2.2.1"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^5.0.4",
+    "raw-loader": "^3.1.0",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0"
+  }
+}
