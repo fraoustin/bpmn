@@ -131,6 +131,8 @@ a {
     position: relative;
     left: -5px;
     content: "\e922";
+}
+.bpmn.file:before {
     color: orange !important;
 }
 

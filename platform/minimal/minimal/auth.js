@@ -171,6 +171,7 @@ document.querySelectorAll('#list tbody tr').forEach(elt => {
     if (elt.querySelectorAll("td a")[0].textContent.endsWith('.bpmn')){
       var pathEdit = window.location.protocol + '//' + window.location.host + '/bpmn/?edit=' + location.pathname + elt.querySelectorAll("td a")[0].getAttribute('href');
       elt.querySelectorAll("td a")[0].setAttribute('href', pathEdit)
+      elt.querySelectorAll("td")[0].classList.add('bpmn')
     }
   }
 })
