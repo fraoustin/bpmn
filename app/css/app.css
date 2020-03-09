@@ -73,6 +73,19 @@ canvas {
   height: -webkit-fill-available !important;
 }
 
+#closedav {
+  top: 10px;
+  display: inline;
+  position: fixed;
+  right: 10px;
+  z-index: 999;
+}
+
+#closedav.bpp-hidden{
+  display: none !important;
+}
+
+
 /* for bpmn-js-properties-panel */
 .bpp-properties-panel {
   background-color: #f8f8f8;

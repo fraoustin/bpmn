@@ -1,5 +1,19 @@
 console.log("webdav-auth")
 
+var bpmnInit = `<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.7.0" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:process id="Process_1" isExecutable="false" versionTag="0.0.1">
+    <bpmn2:startEvent id="StartEvent_1" />
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="152" y="80" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>`
+
 function encodeData(data) {
   return Object.keys(data).map(function(key) {
       return [key, data[key]].map(encodeURIComponent).join("=");
@@ -130,6 +144,20 @@ function bin(name){
 }
 
 /* load page */
+
+function newFile(){
+  var fileName = prompt("Please enter name of new processus", "Name of Processus");
+  if (!fileName == false){
+    var url = window.location.protocol + '//' + window.location.host+window.location.pathname;
+    var fs = new WebDAV.Fs(url);
+    fs.file(fileName+'.bpmn').write(bpmnInit)
+    location.reload();
+  } else {
+    console.log("fileName is null")
+  };   
+}
+
+
 document.querySelectorAll('#list tbody tr').forEach(elt => {
   if (elt.querySelectorAll("td")[1].innerText == '-') {
     elt.querySelectorAll("td")[0].getElementsByTagName("a")[0].innerText = elt.querySelectorAll("td")[0].getElementsByTagName("a")[0].innerText.replace("/","")
@@ -140,6 +168,10 @@ document.querySelectorAll('#list tbody tr').forEach(elt => {
     }
   }else{
     elt.querySelectorAll("td")[0].classList.add("file")
+    if (elt.querySelectorAll("td a")[0].textContent.endsWith('.bpmn')){
+      var pathEdit = window.location.protocol + '//' + window.location.host + '/bpmn/?edit=' + location.pathname + elt.querySelectorAll("td a")[0].getAttribute('href');
+      elt.querySelectorAll("td a")[0].setAttribute('href', pathEdit)
+    }
   }
 })
 
@@ -171,5 +203,8 @@ document.getElementById("list").querySelectorAll("tbody tr td:nth-child(2)").for
 })
 
 document.getElementById("list").querySelectorAll("tbody tr").forEach(elt => {
-  elt.append(htmlToElement('<td class="bin"><a class="icon-bin" onclick="bin(\'' + elt.querySelectorAll("td a")[0].innerText + '\'); return false;"></a></td>'))
+  if (! elt.querySelectorAll("td")[0].classList.contains('parent'))
+  {
+    elt.append(htmlToElement('<td class="bin"><a class="icon-bin" onclick="bin(\'' + elt.querySelectorAll("td a")[0].innerText + '\'); return false;"></a></td>'))
+  };
 })

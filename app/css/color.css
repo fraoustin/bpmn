@@ -46,6 +46,13 @@ bpmn:Transaction
 bpmn:UserTask
 */
 
+
+
+.no-change {
+    color: lightgray;
+    filter: invert(50%);
+}
+
 .bpmn-icon-color-black:before {
     content: '\e838';
     color: unset;

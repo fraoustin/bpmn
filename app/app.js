@@ -266,7 +266,7 @@ function debounce(fn, timeout) {
 function getNameFile(ext) {
   return $("#nameFile").text()+'.'+ext;
 }
-
+/*
 var exportArtifacts = debounce(function() {
   saveSVG(function(err, svg) {
     setEncoded($('#svg'), getNameFile('svg'), err ? null : svg);
@@ -283,6 +283,7 @@ var exportArtifacts = debounce(function() {
 }, 500);
 
 modeler.on('commandStack.changed', exportArtifacts);
+*/
 modeler.on('element.click', changeProperties);
 
 $('#new').click(createNewDiagram);
@@ -370,13 +371,13 @@ function writeFileDav(){
   var url = window.location.protocol + '//' + window.location.host + '/';
   var fs = new WebDAV.Fs(url);
   var path = findGetParameter("edit");
-  writeFile(fs, path, $("#exportdav").attr('data'));
+  writeFile(fs, path, decodeURIComponent($("#exportdav").attr('data')));
+  $('#exportdav').addClass("no-change");
 }
 
 function setEncodedDav(link, name, data) {
   link.addClass('active');
   var encodedData = encodeURIComponent(data);
-  
   if (data) {
     $(".djs-palette").addClass('open');
     link.addClass('active').attr({
@@ -390,25 +391,32 @@ function setEncodedDav(link, name, data) {
 
 if (findGetParameter("edit")) {
   $("#toolbox-standalone").addClass("bpp-hidden");
-
   var exportArtifacts = debounce(function() {
     saveDiagram(function(err, svg) {
       setEncodedDav($('#exportdav'), getNameFile('bpmn'), err ? null : svg);
+      $('#exportdav').removeClass("no-change");
     });
     savePNGDav();
   }, 500);
   $("#exportdav").click(writeFileDav);
-
   var url = window.location.protocol + '//' + window.location.host + '/';
   var fs = new WebDAV.Fs(url);
   var path = findGetParameter("edit");
+  var pathDir = "/" + path.split("/").slice(1,-1).join("/")
+  if (pathDir.length > 1) {
+    pathDir = pathDir + "/"
+  }
+  $("#closedav").attr('href',pathDir);
   readFileFromDav(fs, path)
+
+
 } else {
   $("#toolbox-bpmp").addClass("bpp-hidden");
-
+  $("#closedav").addClass("bpp-hidden");
   var exportArtifacts = debounce(function() {
     saveSVG(function(err, svg) {
       setEncoded($('#svg'), getNameFile('svg'), err ? null : svg);
+      $('export').removeClass("no-change");
     });
     saveDiagram(function(err, svg) {
       setEncoded($('#export'), getNameFile('bpmn'), err ? null : svg);
