@@ -5,7 +5,8 @@ Web application to generate bpmn diagram
 Use
 
 - bpmn-js from https://github.com/bpmn-io/bpmn-js
-- icon from https://feathericons.com/ 
+- icon from https://feathericons.com/
+- siimple.xyz http://siimple.xyz 
 
 You can run with docker
 
