@@ -122,29 +122,49 @@ function FileConvertSize(aSize){
 	}
 }
 
+function bins(){
+  document.querySelectorAll("tr.selected input").forEach(elt => {
+    bin(elt.getAttribute('id'))
+  })
+  location.reload()
+}
+
 function bin(name){
+  console.log(name)
   var url = window.location.protocol + '//' + window.location.host+window.location.pathname;
   var fs = new WebDAV.Fs(url);
   if (name == undefined){
     var name = prompt("Please enter name of element for delete", "Name");
   }
-  document.querySelectorAll("td.dir a").forEach(elt => {
+  document.querySelectorAll("tr.dir a").forEach(elt => {
     if (elt.innerText == name) {
       console.log("del dir " + name)
       fs.dir(name).rm()
     }
   })
-  document.querySelectorAll("td.file a").forEach(elt => {
+  document.querySelectorAll("tr.file a").forEach(elt => {
     if (elt.innerText == name) {
       console.log("del file " + name)
       fs.file(name).rm()
     }
   })
-  location.reload()
+}
+
+function selectedElt(id){
+  var parent = document.getElementById(id).parentElement.parentElement.parentElement;
+  if (parent.classList.contains('selected')) {
+    parent.classList.remove('selected');
+    if (document.querySelectorAll("tr.selected").length == 0) {
+      document.querySelectorAll(".siimple-btn.icon-bin")[0].classList.add("hidden");
+    }
+  } else {
+    parent.classList.add('selected');
+    document.querySelectorAll(".siimple-btn.icon-bin")[0].classList.remove("hidden");
+  }
+  
 }
 
 /* load page */
-
 function newFile(){
   var fileName = prompt("Please enter name of new processus", "Name of Processus");
   if (!fileName == false){
@@ -156,25 +176,6 @@ function newFile(){
     console.log("fileName is null")
   };   
 }
-
-
-document.querySelectorAll('#list tbody tr').forEach(elt => {
-  if (elt.querySelectorAll("td")[1].innerText == '-') {
-    elt.querySelectorAll("td")[0].getElementsByTagName("a")[0].innerText = elt.querySelectorAll("td")[0].getElementsByTagName("a")[0].innerText.replace("/","")
-    if (elt.querySelectorAll("td")[0].getElementsByTagName("a")[0].innerText == "Parent directory") {
-      elt.querySelectorAll("td")[0].classList.add("parent")
-    } else {
-     elt.querySelectorAll("td")[0].classList.add("dir")
-    }
-  }else{
-    elt.querySelectorAll("td")[0].classList.add("file")
-    if (elt.querySelectorAll("td a")[0].textContent.endsWith('.bpmn')){
-      var pathEdit = window.location.protocol + '//' + window.location.host + '/bpmn/?edit=' + location.pathname + elt.querySelectorAll("td a")[0].getAttribute('href');
-      elt.querySelectorAll("td a")[0].setAttribute('href', pathEdit)
-      elt.querySelectorAll("td")[0].classList.add('bpmn')
-    }
-  }
-})
 
 setCookie('webDavLogin','ok')
 var params = params(),
@@ -197,15 +198,45 @@ document.getElementById("list").querySelectorAll("a").forEach(elt => {
   elt.removeAttribute("title")
 })
 
+
 document.getElementById("list").querySelectorAll("tbody tr td:nth-child(2)").forEach(elt => {
   if (elt.innerText != '-') {
     elt.innerText = FileConvertSize(elt.innerText)
   }
 })
 
+
+/* manage checkbox */
+
+document.querySelectorAll('#list tbody tr').forEach(elt => {
+  if (elt.querySelectorAll("td")[1].innerText == '-') {
+    elt.querySelectorAll("td")[0].getElementsByTagName("a")[0].innerText = elt.querySelectorAll("td")[0].getElementsByTagName("a")[0].innerText.replace("/","")
+    if (elt.querySelectorAll("td")[0].getElementsByTagName("a")[0].innerText == "Parent directory") {
+      elt.classList.add("parent")
+    } else {
+     elt.classList.add("dir")
+    }
+  }else{
+    elt.classList.add("file")
+    if (elt.querySelectorAll("td a")[0].textContent.endsWith('.bpmn')){
+      var pathEdit = window.location.protocol + '//' + window.location.host + '/bpmn/?edit=' + location.pathname + elt.querySelectorAll("td a")[0].getAttribute('href');
+      elt.querySelectorAll("td a")[0].setAttribute('href', pathEdit)
+      elt.querySelectorAll("td")[0].classList.add('bpmn')
+    }
+  }
+})
+
+document.getElementById("list").querySelectorAll("thead tr")[0].prepend(htmlToElement('<th></th>'));
 document.getElementById("list").querySelectorAll("tbody tr").forEach(elt => {
-  if (! elt.querySelectorAll("td")[0].classList.contains('parent'))
+  if (! elt.classList.contains('parent'))
   {
-    elt.append(htmlToElement('<td class="bin"><a class="icon-bin" onclick="bin(\'' + elt.querySelectorAll("td a")[0].innerText + '\'); return false;"></a></td>'))
+    var id = elt.querySelectorAll("td a")[0].innerText; //getAttribute('href');
+    elt.prepend(htmlToElement('<td><div class="siimple-checkbox"><input type="checkbox" id="' + id + '" onclick="selectedElt(\'' + id +'\')"><label for="' + id + '"></label></div></td>'))
+  } else {
+    elt.prepend(htmlToElement('<td></td>'))    
   };
 })
+
+/* manage navbar */
+document.getElementsByClassName("siimple-navbar-title")[0].textContent = document.getElementById("original_fancyindex").firstChild.textContent;
+document.getElementById("original_fancyindex").firstChild.remove();
